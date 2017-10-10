@@ -4,19 +4,10 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Current Weather</title>
-
-<style type="text/css">
-
-	.hideTemp{
-		display: none;
-	}
-
-</style>
-
+<title>Check Weather</title>
 </head>
 <body>
-	<h1>Current Weather</h1>
+	<h1>Check Weather</h1>
 
 	<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 
@@ -26,29 +17,10 @@
 		<form:input type="text" id="city" name="city" path="name"/>
 		<br/>
 		
-		<input type="button" id="tempBtn" value="Obtener temperatura" />
+		<input type="submit" id="tempBtn" value="Obtener temperatura" />
 		
 	</form:form>
 	
-	<h3 class="hideTemp">La temperatura actual en ${city} es de ${temp} grados centígrados.</h3>
-	
-	<!-- jQuery -->
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-	
-	<script type="text/javascript">
-	
-		$(document).ready(function() {
-			
-			$("#tempBtn").click(function() {
-				$("#form").submit();
-				$("#form").css("display", "none");
-				$("h3").show();
-				
-				return false;
-			});
-			
-		});
-
-	</script>
+	<!-- <script type="text/javascript" src="static/scripts/weather.js"></script> -->
 </body>
 </html>
