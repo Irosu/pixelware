@@ -34,7 +34,7 @@ public class WeatherController{
 	}
 	
 	@GetMapping("/")
-	public String getTemp() {		
+	public String getTemp() {
 		return "index";
 	}
 	
@@ -43,14 +43,15 @@ public class WeatherController{
 		
 		Weather weather = service.getWeather(city.getName());
 		
-		model.addAttribute("city", city.getName());
-		
-		if(weather.getError() != null) {        
+		if(weather != null) {
 			model.addAttribute("temp", weather.getCurrent().getTemp_c());
+			model.addAttribute("city", weather.getLocation().getName());
+			model.addAttribute("region", weather.getLocation().getRegion());
+			model.addAttribute("country", weather.getLocation().getCountry());
         }
         
         else {
-        	model.addAttribute("temp", "error");
+        	model.addAttribute("error", "error");
         }		
 		
 		return "currentWeather";

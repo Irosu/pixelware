@@ -1,6 +1,7 @@
 package com.pixelware.service;
 
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
 import com.pixelware.model.Weather;
@@ -13,8 +14,13 @@ public class WeatherService {
 	
 	public Weather getWeather(String city) {
 		RestTemplate restTemplate = new RestTemplate();
-        Weather weather = restTemplate.getForObject(URL + city, Weather.class);
-        
-        return weather;
+		
+		try {
+	        return restTemplate.getForObject(URL + city, Weather.class);
+		}
+		
+		catch (HttpClientErrorException e) {
+			return null;
+		}
 	}
 }

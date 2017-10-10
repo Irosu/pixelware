@@ -15,7 +15,6 @@ public class Weather implements Serializable {
 
 	private Location location;
 	private Current current;
-	private Error error;
 
 	public Location getLocation() {
 		return location;
@@ -31,13 +30,5 @@ public class Weather implements Serializable {
 
 	public void setCurrent(Current current) {
 		this.current = current;
-	}
-
-	public Error getError() {
-		return error;
-	}
-
-	public void setError(Error error) {
-		this.error = error;
 	}
 }

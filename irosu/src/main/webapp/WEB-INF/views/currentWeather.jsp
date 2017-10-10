@@ -17,11 +17,12 @@
 	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 	
 	<c:choose>
-		<c:when test="${temp} == 'error'">
+		<c:when test="${error == 'error'}">
 			<h3>No se ha encontrado esa ciudad.</h3>
 		</c:when>
 		<c:otherwise>
-			<h3>La temperatura actual en ${city} es de ${temp} grados centígrados.</h3>
+			<h3>${city} - ${region}(${country})</h3>
+			<h3>${temp}</h3>
 		</c:otherwise>
 	</c:choose>
 	
