@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.pixelware.model.City;
+import com.pixelware.model.Weather;
 import com.pixelware.service.WeatherService;
 
 /**
@@ -40,9 +41,18 @@ public class WeatherController{
 	@PostMapping("/weather")
 	public String showTemp(@ModelAttribute("weather") City city, Model model) {
 		
-		model.addAttribute("city", city.getName());
-		model.addAttribute("temp", service.getWeather(city.getName()));
+		Weather weather = service.getWeather(city.getName());
 		
-		return "index";
+		model.addAttribute("city", city.getName());
+		
+		if(weather.getError() != null) {        
+			model.addAttribute("temp", weather.getCurrent().getTemp_c());
+        }
+        
+        else {
+        	model.addAttribute("temp", "error");
+        }		
+		
+		return "currentWeather";
 	}
 }

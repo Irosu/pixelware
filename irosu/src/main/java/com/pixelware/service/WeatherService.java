@@ -9,12 +9,12 @@ import com.pixelware.model.Weather;
 public class WeatherService {
 
 	private static final String APIXU_API_KEY = "ab6851fb5c724e3f8d2105815170610";
+	private static final String URL = "http://api.apixu.com/v1/current.json?key=" + APIXU_API_KEY + "&q=";
 	
-	public int getWeather(String city) {
+	public Weather getWeather(String city) {
 		RestTemplate restTemplate = new RestTemplate();
-        Weather weather = restTemplate.getForObject("http://api.apixu.com/v1/current.json?key=" 
-    		+ APIXU_API_KEY + "&q=" + city, Weather.class);
+        Weather weather = restTemplate.getForObject(URL + city, Weather.class);
         
-        return weather.getCurrent().getTemp_c();
+        return weather;
 	}
 }
