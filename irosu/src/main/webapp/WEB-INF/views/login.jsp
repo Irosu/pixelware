@@ -1,54 +1,93 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
-<html>
+<html ng-app="loginApp">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Current Weather</title>
+<title>Login</title>
 
-<style type="text/css">
 
-	.hideTemp{
-		display: none;
-	}
-
-</style>
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+<!-- <link rel="stylesheet" type="text/css" href="static/styles/bootstrap.min.css">  -->
+<link rel="stylesheet" type="text/css" href="static/styles/login.css">
 
 </head>
-<body>
-	<h1>Current Weather</h1>
+<body ng-controller="loginController">
 
-	<%--@ taglib uri="http://www.springframework.org/tags/form" prefix="form" --%>
+	<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 
-	<form:form id="form" method="post" modelAttribute="weather" action="weather">
+	<div class="col-md-offset-5 col-md-2 col-md-offset-5 text-center verticalCenter">
+		<h3>Acceder a la aplicación</h3>
 	
-		<label for="city">Introduce el nombre de una ciudad</label>
-		<form:input type="text" id="city" name="city" path="name"/>
-		<br/>
 		
-		<input type="button" id="tempBtn" value="Obtener temperatura" />
+		<form:form id="form" method="post" modelAttribute="user" action="login">
 		
-	</form:form>
+			<div class="input-group">
+				<span class="input-group-addon">
+					<i class="glyphicon glyphicon-user"></i>
+				</span>
+				<form:input id="user" type="text" class="form-control" name="user" 
+				path="name" placeholder="User" required="required" />
+			</div>
+			
+			<div class="input-group ocultar">
+				<span class="input-group-addon">
+					<i class="glyphicon glyphicon-envelope"></i>
+				</span>
+				<form:input id="email" type="email" class="form-control" name="email" 
+				path="email" placeholder="Email" required="required" />
+			</div>
+			
+			<div class="input-group">
+				<span class="input-group-addon">
+					<i class="glyphicon glyphicon-lock"></i>
+				</span>
+				<form:input id="password" type="password" class="form-control" name="password" 
+				path="password" placeholder="Password" required="required" />
+			</div>
+			
+			<div id="regPassword" class="input-group ocultar">
+				<span class="input-group-addon">
+					<i class="glyphicon glyphicon-lock"></i>
+				</span>
+				<input id="confPassword" type="password" class="form-control" name="confPassword" 
+				placeholder="Confirm password" required="required" />
+			</div>
+			
+			
+			<div id="date" class="input-group ocultar">
+				<input type="date">
+			</div>
+			
+		
+			
+			<div id="country" class="input-group ocultar">
+				<select ng-model="selectedCountry" ng-options="item in names" 
+					id="country" class="form-control" name="country" path="country">
+					
+				</select>
+			</div>
+			
+			
+			<div class="button-group">
+				<button id="btn" type="submit" class="form-control" name="btn">Entrar</button>
+			</div>
+			
+		</form:form>
+			
+		<div>
+			<a id="register" href="">Registrarme</a>
+		</div>
+	</div>
 	
-	<h3 class="hideTemp">La temperatura actual en ${city} es de ${temp} grados centígrados.</h3>
-	
-	<!-- jQuery -->
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.6/angular.min.js"></script>
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<!-- 
+	<script type="text/javascript" src="static/scripts/angular.min.js"></script>
+	<script type="text/javascript" src="static/scripts/jquery-min.js"></script>
+	 -->
+	<script type="text/javascript" src="static/scripts/loginAng.js"></script>
+	<script type="text/javascript" src="static/scripts/loginJq.js"></script>
 	
-	<script type="text/javascript">
-	
-		$(document).ready(function() {
-			
-			$("#tempBtn").click(function() {
-				$("#form").submit();
-				$("#form").css("display", "none");
-				$("h3").show();
-				
-				return false;
-			});
-			
-		});
-
-	</script>
 </body>
 </html>

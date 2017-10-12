@@ -7,8 +7,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.pixelware.model.City;
+import com.pixelware.model.User;
 import com.pixelware.model.Weather;
 import com.pixelware.service.WeatherService;
 
@@ -18,7 +20,7 @@ import com.pixelware.service.WeatherService;
  * @author irsrg
  */
 @Controller
-@SessionAttributes("weather")
+@SessionAttributes(value = {"weather", "login"})
 public class WeatherController{
 
 	private WeatherService service;
@@ -33,9 +35,14 @@ public class WeatherController{
 		return new City();
 	}
 	
+	@ModelAttribute("user")
+	public User setUpUser() {
+		return new User();
+	}
+	
 	@GetMapping("/")
 	public String getTemp() {
-		return "index";
+		return "login";
 	}
 	
 	@PostMapping("/weather")
@@ -53,6 +60,14 @@ public class WeatherController{
         else {
         	model.addAttribute("error", "error");
         }		
+		
+		return "currentWeather";
+	}
+	
+	@PostMapping("/login")
+	public String login(@ModelAttribute("user") User user, Model model) {
+		
+			
 		
 		return "currentWeather";
 	}
