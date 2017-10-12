@@ -2,13 +2,14 @@ package com.pixelware.controller;
 
 import java.sql.SQLException;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.pixelware.model.City;
 import com.pixelware.model.User;
@@ -22,18 +23,13 @@ import com.pixelware.service.WeatherService;
  * @author irsrg
  */
 @Controller
-@SessionAttributes(value = {"weather", "login", "register"})
 public class MainController{
 
 	@Autowired
 	private UserService userService;
-	
-	private WeatherService weatherService;
 
 	@Autowired
-	public void setService(WeatherService service) {
-		this.weatherService = service;
-	}
+	private WeatherService weatherService;
 	
 	@ModelAttribute("weather")
 	public City setUpCity() {
@@ -70,10 +66,28 @@ public class MainController{
 	}
 	
 	@PostMapping("/login")
-	public String login(@ModelAttribute("user") User user, Model model) {
-
+	public String login(@ModelAttribute("user") User user, Model model, HttpSession session) {
 		
-		return "checkWeather";
+		User dbUser = null;
+
+		try {
+			
+			dbUser = userService.getUserByName(user.getName());
+			
+			if(dbUser != null && user.getPassword().equals(dbUser.getPassword())) {
+				session.setAttribute("currentUser", dbUser);
+				return "checkWeather";
+			}
+			
+			else {
+				return "login";
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return "login";
 	}
 	
 	@PostMapping("/register")
@@ -85,6 +99,14 @@ public class MainController{
 			e.printStackTrace();
 		}
 		
-		return "checkWeather";
+		return "login";
 	}
+	
+	@PostMapping("/logout")
+	public String logOut(HttpSession session) {
+		session.setAttribute("currentUser", null);
+		
+		return "login";
+	}
+		
 }

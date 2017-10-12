@@ -75,17 +75,16 @@ public class UserDaoImpl implements UserDao {
 
 		try {
 
-			String insert = "INSERT INTO users VALUES(?,?, ?,?,?,?)";
+			String insert = "INSERT INTO users(name, email, country, birthDate, password) VALUES(?, ?, ?, ?, ?)";
 
 			connection = dataSource.getConnection();
 			statement = connection.prepareStatement(insert);
 
-			statement.setInt(1, user.getId());
-			statement.setString(2, user.getName());
-			statement.setString(3, user.getEmail());
-			statement.setString(4, user.getCountry());
-			statement.setString(5, user.getBirthDate());
-			statement.setString(6, user.getPassword());
+			statement.setString(1, user.getName());
+			statement.setString(2, user.getEmail());
+			statement.setString(3, user.getCountry());
+			statement.setString(4, user.getBirthDate());
+			statement.setString(5, user.getPassword());
 
 			statement.executeUpdate();
 

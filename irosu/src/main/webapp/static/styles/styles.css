@@ -5,3 +5,7 @@
 .ocultar {
 	display: none;
 }
+
+.logout {
+	padding: 25px;
+}
