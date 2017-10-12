@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.sql.DataSource;
 
@@ -27,7 +28,7 @@ public class UserDaoImpl implements UserDao {
 		this.dataSource = dataSource;
 	}
 
-	public User getUserByName(String name) throws SQLException {
+	public User getUserByEmail(String email) throws SQLException {
 
 		Connection connection = null;
 		PreparedStatement statement = null;
@@ -35,12 +36,12 @@ public class UserDaoImpl implements UserDao {
 
 		try {
 
-			String select = "SELECT id, name, email, country, birthDate, password FROM users WHERE name = ?";
+			String select = "SELECT id, name, email, country, birthDate, password FROM users WHERE email = ?";
 
 			connection = dataSource.getConnection();
 			statement = connection.prepareStatement(select);
 
-			statement.setString(1, name);
+			statement.setString(1, email);
 
 			rs = statement.executeQuery();
 
@@ -75,10 +76,10 @@ public class UserDaoImpl implements UserDao {
 
 		try {
 
-			String insert = "INSERT INTO users(name, email, country, birthDate, password) VALUES(?, ?, ?, ?, ?)";
+			String select = "INSERT INTO users(name, email, country, birthDate, password) VALUES(?, ?, ?, ?, ?)";
 
 			connection = dataSource.getConnection();
-			statement = connection.prepareStatement(insert);
+			statement = connection.prepareStatement(select);
 
 			statement.setString(1, user.getName());
 			statement.setString(2, user.getEmail());
@@ -98,5 +99,37 @@ public class UserDaoImpl implements UserDao {
 			}
 		}
 
+	}
+
+	public ArrayList<String> getEmails() throws SQLException {
+
+		ArrayList<String> emails = new ArrayList<String>();
+		
+		Connection connection = null;
+		PreparedStatement statement = null;
+		ResultSet rs = null;
+
+		try {
+			String insert = "SELECT email FROM users";
+
+			connection = dataSource.getConnection();
+			statement = connection.prepareStatement(insert);
+			rs = statement.executeQuery();
+
+			while (rs.next()) {
+				emails.add(rs.getString("email"));
+			}
+
+		} finally {
+			if (statement != null) {
+				statement.close();
+			}
+
+			if (connection != null) {
+				connection.close();
+			}
+		}
+		
+		return emails;
 	}
 }

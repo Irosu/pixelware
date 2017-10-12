@@ -1,6 +1,7 @@
 package com.pixelware.model.dao;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import com.pixelware.model.User;
 
@@ -11,7 +12,9 @@ import com.pixelware.model.User;
  */
 public interface UserDao {
 
-	User getUserByName(String name) throws SQLException;
+	User getUserByEmail(String email) throws SQLException;
+	
+	ArrayList<String> getEmails() throws SQLException;
 
 	void addUser(User user) throws SQLException;
 }

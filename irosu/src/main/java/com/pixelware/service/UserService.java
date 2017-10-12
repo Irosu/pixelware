@@ -14,11 +14,15 @@ public class UserService {
 	@Autowired
 	private UserDao userDao;
 	
-	public User getUserByName(String name) throws SQLException {
-		return userDao.getUserByName(name);
+	public User getUserByEmail(String email) throws SQLException {
+		return userDao.getUserByEmail(email);
 	}
 	
 	public void addUser(User user) throws SQLException {
 		userDao.addUser(user);
+	}
+	
+	public boolean checkEmail(String email) throws SQLException {
+		return userDao.getEmails().contains(email);
 	}
 }

@@ -19,20 +19,21 @@
 		
 		<form:form id="form" method="post" modelAttribute="user" action="login">
 		
-			<div class="input-group">
+			<div class="input-group ocultar">
 				<span class="input-group-addon">
 					<i class="glyphicon glyphicon-user"></i>
 				</span>
-				<form:input id="user" type="text" class="form-control" name="user" 
-				path="name" placeholder="User" required="required" />
+				<form:input id="name" type="text" class="form-control regist" name="name" 
+				path="name" placeholder="Name" />
 			</div>
 			
-			<div class="input-group ocultar">
+			<div class="input-group">
 				<span class="input-group-addon">
 					<i class="glyphicon glyphicon-envelope"></i>
 				</span>
 				<form:input id="email" type="email" class="form-control regist" name="email" 
-				path="email" placeholder="Email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"/>
+				path="email" placeholder="Email" required="required" 
+				pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" title="Insert a valid email"/>
 			</div>
 			
 			<div class="input-group">
@@ -55,8 +56,8 @@
 				<span class="input-group-addon">
 					<i class="glyphicon glyphicon-calendar"></i>
 				</span>
-				<input id="birthDate" type="text" class="form-control regist" placeholder="Birthday (dd/mm/aaaa)" 
-				path="birthDate" pattern="^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$"/>
+				<form:input id="birthDate" type="text" class="form-control regist" placeholder="Birthday (dd/mm/yyyy)" 
+				path="birthDate" pattern="^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$" title="dd/mm/yyyy"/>
 			</div>		
 			
 			<div class="input-group ocultar">
@@ -70,7 +71,7 @@
 			</div>			
 			
 			<div class="label-group">
-				<label id="lblError" name="lblError">${error}</label>
+				<label id="lblError">${error}</label>
 			</div>
 			
 			<div class="button-group">

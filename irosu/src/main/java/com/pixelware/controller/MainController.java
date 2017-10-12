@@ -72,7 +72,7 @@ public class MainController{
 
 		try {
 			
-			dbUser = userService.getUserByName(user.getName());
+			dbUser = userService.getUserByEmail(user.getEmail());
 			
 			if(dbUser != null && user.getPassword().equals(dbUser.getPassword())) {
 				session.setAttribute("currentUser", dbUser);
@@ -95,7 +95,13 @@ public class MainController{
 	public String register(@ModelAttribute("user") User user, Model model) {
 				
 		try {
-			userService.addUser(user);
+			if(!userService.checkEmail(user.getEmail())) {
+				userService.addUser(user);
+			}
+			
+			else {
+				model.addAttribute("error", "That email is already registered. Try another one.");
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

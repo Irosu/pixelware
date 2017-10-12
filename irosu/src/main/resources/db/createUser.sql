@@ -1,8 +1,8 @@
 CREATE TABLE users(
-	id 	INTEGER IDENTITY PRIMARY KEY,
-	name 	VARCHAR(30),
-	email 	VARCHAR(50),
-	birthDate	VARCHAR(15),
-	country 	VARCHAR(50),
-	password	VARCHAR(30)
+	id INTEGER IDENTITY PRIMARY KEY,
+	name VARCHAR(30) NOT NULL,
+	email VARCHAR(50) NOT NULL,
+	birthDate VARCHAR(15) NOT NULL,
+	country VARCHAR(50) NOT NULL,
+	password VARCHAR(30) NOT NULL
 );
