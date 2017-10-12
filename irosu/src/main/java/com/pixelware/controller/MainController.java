@@ -20,8 +20,8 @@ import com.pixelware.service.WeatherService;
  * @author irsrg
  */
 @Controller
-@SessionAttributes(value = {"weather", "login"})
-public class WeatherController{
+@SessionAttributes(value = {"weather", "login", "register"})
+public class MainController{
 
 	private WeatherService service;
 
@@ -66,9 +66,15 @@ public class WeatherController{
 	
 	@PostMapping("/login")
 	public String login(@ModelAttribute("user") User user, Model model) {
+
 		
-			
+		return "checkWeather";
+	}
+	
+	@PostMapping("/register")
+	public String register(@ModelAttribute("user") User user, Model model) {
+				
 		
-		return "currentWeather";
+		return "checkWeather";
 	}
 }

@@ -6,9 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Login</title>
 
-
 <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
-<!-- <link rel="stylesheet" type="text/css" href="static/styles/bootstrap.min.css">  -->
 <link rel="stylesheet" type="text/css" href="static/styles/login.css">
 
 </head>
@@ -17,7 +15,7 @@
 	<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 
 	<div class="col-md-offset-5 col-md-2 col-md-offset-5 text-center verticalCenter">
-		<h3>Acceder a la aplicación</h3>
+		<h3>Login to the weather app</h3>
 	
 		
 		<form:form id="form" method="post" modelAttribute="user" action="login">
@@ -34,8 +32,8 @@
 				<span class="input-group-addon">
 					<i class="glyphicon glyphicon-envelope"></i>
 				</span>
-				<form:input id="email" type="email" class="form-control" name="email" 
-				path="email" placeholder="Email" required="required" />
+				<form:input id="email" type="email" class="form-control regist" name="email" 
+				path="email" placeholder="Email" />
 			</div>
 			
 			<div class="input-group">
@@ -46,46 +44,48 @@
 				path="password" placeholder="Password" required="required" />
 			</div>
 			
-			<div id="regPassword" class="input-group ocultar">
+			<div class="input-group ocultar">
 				<span class="input-group-addon">
 					<i class="glyphicon glyphicon-lock"></i>
 				</span>
-				<input id="confPassword" type="password" class="form-control" name="confPassword" 
-				placeholder="Confirm password" required="required" />
+				<input id="confPassword" type="password" class="form-control regist" name="confPassword" 
+				placeholder="Confirm password" />
 			</div>
 			
 			
-			<div id="date" class="input-group ocultar">
-				<input type="date">
+			<div class="input-group ocultar">
+				<span class="input-group-addon">
+					<i class="glyphicon glyphicon-calendar"></i>
+				</span>
+				<input id="date" type="text" class="form-control regist" placeholder="Birthday (dd/mm/aaaa)" path="date" />
 			</div>
 			
 		
 			
-			<div id="country" class="input-group ocultar">
-				<select ng-model="selectedCountry" ng-options="item in names" 
-					id="country" class="form-control" name="country" path="country">
-					
+			<div class="input-group ocultar">
+				<span class="input-group-addon">
+					<i class="glyphicon glyphicon-globe"></i>
+				</span>
+				<select ng-model="selectedCountry" ng-options="item.name as item.name for item in countries.RestResponse.result track by item.name" 
+					id="country" class="form-control regist" name="country" path="country">
+					<option value="">Select a country</option>	
 				</select>
 			</div>
 			
 			
 			<div class="button-group">
-				<button id="btn" type="submit" class="form-control" name="btn">Entrar</button>
+				<button id="btn" type="submit" class="btn-primary form-control" name="btn">Login</button>
 			</div>
 			
 		</form:form>
 			
 		<div>
-			<a id="register" href="">Registrarme</a>
+			<a id="register" href="">Register</a>
 		</div>
 	</div>
 	
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.6/angular.min.js"></script>
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-	<!-- 
-	<script type="text/javascript" src="static/scripts/angular.min.js"></script>
-	<script type="text/javascript" src="static/scripts/jquery-min.js"></script>
-	 -->
 	<script type="text/javascript" src="static/scripts/loginAng.js"></script>
 	<script type="text/javascript" src="static/scripts/loginJq.js"></script>
 	
