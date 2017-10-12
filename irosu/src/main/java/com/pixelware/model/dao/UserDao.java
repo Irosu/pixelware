@@ -6,7 +6,7 @@ import com.pixelware.model.User;
 
 /**
  * DAO para el User
- * 
+ *
  * @author irsrg
  */
 public interface UserDao {

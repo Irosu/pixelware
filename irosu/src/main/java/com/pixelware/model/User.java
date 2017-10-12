@@ -5,7 +5,7 @@ import java.io.Serializable;
 import org.springframework.stereotype.Component;
 
 /**
- * Tabla Users de la BBDD
+ * POJO para trabajo con usuarios
  * 
  * @author irsrg
  */
@@ -17,16 +17,18 @@ public class User implements Serializable {
 	private String name;
 	private String email;
 	private String country;
+	private String date;
 	private String password;
-
-	public User(int id, String name, String email, String country, String password) {
+	
+	public User(int id, String name, String email, String country, String date, String password) {
 		this.id = id;
 		this.name = name;
 		this.email = email;
 		this.country = country;
+		this.date = date;
 		this.password = password;
 	}
-	
+
 	public User() {}
 
 	public int getId() {
@@ -59,6 +61,14 @@ public class User implements Serializable {
 
 	public void setCountry(String country) {
 		this.country = country;
+	}
+
+	public String getDate() {
+		return date;
+	}
+
+	public void setDate(String date) {
+		this.date = date;
 	}
 
 	public String getPassword() {

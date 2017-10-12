@@ -30,7 +30,7 @@ public class UserDaoImpl implements UserDao {
 
 		try {
 
-			String select = "SELECT id, name, email, country, password FROM users WHERE name = ?";
+			String select = "SELECT id, name, email, country, date, password FROM users WHERE name = ?";
 
 			connection = dataSource.getConnection();
 			statement = connection.prepareStatement(select);
@@ -43,7 +43,7 @@ public class UserDaoImpl implements UserDao {
 
 			if (rs.next()) {
 				user = new User(rs.getInt("id"), rs.getString("name"), rs.getString("email"), 
-						rs.getString("country"), rs.getString("password"));
+						rs.getString("date"), rs.getString("country"), rs.getString("password"));
 			}
 
 			return user;
@@ -70,7 +70,7 @@ public class UserDaoImpl implements UserDao {
 
 		try {
 
-			String insert = "INSERT INTO users VALUES(?,?,?,?,?)";
+			String insert = "INSERT INTO users VALUES(?,?, ?,?,?,?)";
 
 			connection = dataSource.getConnection();
 			statement = connection.prepareStatement(insert);
@@ -79,7 +79,8 @@ public class UserDaoImpl implements UserDao {
 			statement.setString(2, user.getName());
 			statement.setString(3, user.getEmail());
 			statement.setString(4, user.getCountry());
-			statement.setString(5, user.getPassword());
+			statement.setString(5, user.getDate());
+			statement.setString(6, user.getPassword());
 
 			statement.executeUpdate();
 
