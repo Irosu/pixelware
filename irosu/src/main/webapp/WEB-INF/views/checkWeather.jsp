@@ -25,7 +25,7 @@
 			</div>
 			<br/>
 			
-			<input class="btn btn-primary form-control" type="submit" id="tempBtn" value="Obtener temperatura" />
+			<input class="btn btn-primary form-control" type="submit" id="tempBtn" value="Get current weather" />
 			
 		</form:form>	
 	</div>

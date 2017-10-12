@@ -14,7 +14,7 @@ var controlador = login.controller("loginController", ["$scope", "$http", functi
 		}).then(function (response){
 			$scope.countries = response.data;
 		}, function (error){
-			alert("Error al cargar los datos");
+			alert("We could not get the data");
 		});
 	}
 }]);

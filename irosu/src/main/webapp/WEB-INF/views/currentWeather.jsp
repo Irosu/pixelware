@@ -20,13 +20,13 @@
 			<c:choose>
 				<c:when test="${error == 'error'}">
 					<div>
-						<h4>No se ha encontrado esa ciudad.</h4>
+						<h4>We could not find that city</h4>
 					</div>
 				</c:when>
 				<c:otherwise>
 					<div>
-						<h4>${city} - ${region}(${country})</h4>
-						<h4>${temp} &#8451;</h4>
+						<h3>${city} - ${region} (${country})</h3>
+						<h3>${temp} &#8451;</h3>
 					</div>
 				</c:otherwise>
 			</c:choose>
