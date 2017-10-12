@@ -32,7 +32,7 @@
 					<i class="glyphicon glyphicon-envelope"></i>
 				</span>
 				<form:input id="email" type="email" class="form-control regist" name="email" 
-				path="email" placeholder="Email" />
+				path="email" placeholder="Email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"/>
 			</div>
 			
 			<div class="input-group">
@@ -40,7 +40,7 @@
 					<i class="glyphicon glyphicon-lock"></i>
 				</span>
 				<form:input id="password" type="password" class="form-control" name="password" 
-				path="password" placeholder="Password" required="required" />
+				path="password" placeholder="Password" required="required" pattern=".{6,}" title="Six or more characters"/>
 			</div>
 			
 			<div class="input-group ocultar">
@@ -48,14 +48,15 @@
 					<i class="glyphicon glyphicon-lock"></i>
 				</span>
 				<input id="confPassword" type="password" class="form-control regist" name="confPassword" 
-				placeholder="Confirm password" />
+				placeholder="Confirm password" pattern=".{6,}" title="Six or more characters"/>
 			</div>			
 			
 			<div class="input-group ocultar">
 				<span class="input-group-addon">
 					<i class="glyphicon glyphicon-calendar"></i>
 				</span>
-				<input id="birthDate" type="text" class="form-control regist" placeholder="Birthday (dd/mm/aaaa)" path="birthDate" />
+				<input id="birthDate" type="text" class="form-control regist" placeholder="Birthday (dd/mm/aaaa)" 
+				path="birthDate" pattern="^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$"/>
 			</div>		
 			
 			<div class="input-group ocultar">
@@ -68,6 +69,10 @@
 				</select>
 			</div>			
 			
+			<div class="label-group">
+				<label id="lblError" name="lblError">${error}</label>
+			</div>
+			
 			<div class="button-group">
 				<button id="btn" type="submit" class="btn-primary form-control" name="btn">Login</button>
 			</div>
@@ -75,7 +80,7 @@
 		</form:form>
 			
 		<div>
-			<a id="register" href="">Register</a>
+			<a id="register" href="">New here?</a>
 		</div>
 	</div>
 	

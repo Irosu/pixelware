@@ -80,6 +80,7 @@ public class MainController{
 			}
 			
 			else {
+				model.addAttribute("error", "Wrong user or password");
 				return "login";
 			}
 			

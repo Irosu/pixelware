@@ -5,9 +5,9 @@ var login = angular.module("loginApp", []);
 
 var controlador = login.controller("loginController", ["$scope", "$http", function($scope, $http) {
 
-	$scope.countries = {};
+	$scope.countries;
 
-	if($scope.countrie == null) {
+	if($scope.countries == null) {
 		$http({
 			method: 'GET',
 			url: 'https://restcountries.eu/rest/v2/all'
