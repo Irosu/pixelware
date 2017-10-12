@@ -55,7 +55,7 @@
 				<span class="input-group-addon">
 					<i class="glyphicon glyphicon-calendar"></i>
 				</span>
-				<input id="date" type="text" class="form-control regist" placeholder="Birthday (dd/mm/aaaa)" path="date" />
+				<input id="birthDate" type="text" class="form-control regist" placeholder="Birthday (dd/mm/aaaa)" path="birthDate" />
 			</div>		
 			
 			<div class="input-group ocultar">

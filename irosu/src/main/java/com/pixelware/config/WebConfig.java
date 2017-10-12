@@ -1,8 +1,12 @@
 package com.pixelware.config;
 
+import javax.sql.DataSource;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
+import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
@@ -11,7 +15,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 
 /**
- * Clase de configuración de componentes de Spring y la gestión de las vistas
+ * Clase de configuración de componentes de Spring, recursos y bbdd
  * 
  * @author irsrg
  */
@@ -33,5 +37,13 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 	
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		 registry.addResourceHandler("/static/**").addResourceLocations("/static/");
+	}
+	
+	@Bean
+	public DataSource dataSource() {
+		return new EmbeddedDatabaseBuilder()
+			.setType(EmbeddedDatabaseType.HSQL)
+			.addScript("classpath:/db/createUser.sql")
+			.build();
 	}
 }

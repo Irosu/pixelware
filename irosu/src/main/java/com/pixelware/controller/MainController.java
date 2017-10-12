@@ -1,5 +1,7 @@
 package com.pixelware.controller;
 
+import java.sql.SQLException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -7,11 +9,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.pixelware.model.City;
 import com.pixelware.model.User;
 import com.pixelware.model.Weather;
+import com.pixelware.service.UserService;
 import com.pixelware.service.WeatherService;
 
 /**
@@ -23,11 +25,14 @@ import com.pixelware.service.WeatherService;
 @SessionAttributes(value = {"weather", "login", "register"})
 public class MainController{
 
-	private WeatherService service;
+	@Autowired
+	private UserService userService;
+	
+	private WeatherService weatherService;
 
 	@Autowired
 	public void setService(WeatherService service) {
-		this.service = service;
+		this.weatherService = service;
 	}
 	
 	@ModelAttribute("weather")
@@ -48,7 +53,7 @@ public class MainController{
 	@PostMapping("/weather")
 	public String showTemp(@ModelAttribute("weather") City city, Model model) {
 		
-		Weather weather = service.getWeather(city.getName());
+		Weather weather = weatherService.getWeather(city.getName());
 		
 		if(weather != null) {
 			model.addAttribute("temp", weather.getCurrent().getTemp_c());
@@ -74,6 +79,11 @@ public class MainController{
 	@PostMapping("/register")
 	public String register(@ModelAttribute("user") User user, Model model) {
 				
+		try {
+			userService.addUser(user);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		
 		return "checkWeather";
 	}

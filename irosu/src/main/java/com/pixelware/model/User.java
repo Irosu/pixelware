@@ -17,15 +17,15 @@ public class User implements Serializable {
 	private String name;
 	private String email;
 	private String country;
-	private String date;
+	private String birthDate;
 	private String password;
 	
-	public User(int id, String name, String email, String country, String date, String password) {
+	public User(int id, String name, String email, String country, String birthDate, String password) {
 		this.id = id;
 		this.name = name;
 		this.email = email;
 		this.country = country;
-		this.date = date;
+		this.birthDate = birthDate;
 		this.password = password;
 	}
 
@@ -63,12 +63,12 @@ public class User implements Serializable {
 		this.country = country;
 	}
 
-	public String getDate() {
-		return date;
+	public String getBirthDate() {
+		return birthDate;
 	}
 
-	public void setDate(String date) {
-		this.date = date;
+	public void setBirthDate(String birthDate) {
+		this.birthDate = birthDate;
 	}
 
 	public String getPassword() {
