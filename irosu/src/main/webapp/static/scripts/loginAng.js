@@ -10,7 +10,7 @@ var controlador = login.controller("loginController", ["$scope", "$http", functi
 	if($scope.countrie == null) {
 		$http({
 			method: 'GET',
-			url: 'http://services.groupkt.com/country/get/all'
+			url: 'https://restcountries.eu/rest/v2/all'
 		}).then(function (response){
 			$scope.countries = response.data;
 		}, function (error){

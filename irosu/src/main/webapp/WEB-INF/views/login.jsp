@@ -15,8 +15,7 @@
 	<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 
 	<div class="col-md-offset-5 col-md-2 col-md-offset-5 text-center verticalCenter">
-		<h3>Login to the weather app</h3>
-	
+		<h3>Login to the weather app</h3>	
 		
 		<form:form id="form" method="post" modelAttribute="user" action="login">
 		
@@ -50,28 +49,24 @@
 				</span>
 				<input id="confPassword" type="password" class="form-control regist" name="confPassword" 
 				placeholder="Confirm password" />
-			</div>
-			
+			</div>			
 			
 			<div class="input-group ocultar">
 				<span class="input-group-addon">
 					<i class="glyphicon glyphicon-calendar"></i>
 				</span>
 				<input id="date" type="text" class="form-control regist" placeholder="Birthday (dd/mm/aaaa)" path="date" />
-			</div>
-			
-		
+			</div>		
 			
 			<div class="input-group ocultar">
 				<span class="input-group-addon">
 					<i class="glyphicon glyphicon-globe"></i>
 				</span>
-				<select ng-model="selectedCountry" ng-options="item.name as item.name for item in countries.RestResponse.result track by item.name" 
+				<select ng-model="selectedCountry" ng-options="item.name as item.name for item in countries track by item.name" 
 					id="country" class="form-control regist" name="country" path="country">
 					<option value="">Select a country</option>	
 				</select>
-			</div>
-			
+			</div>			
 			
 			<div class="button-group">
 				<button id="btn" type="submit" class="btn-primary form-control" name="btn">Login</button>
